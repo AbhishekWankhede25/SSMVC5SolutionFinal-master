@@ -1,0 +1,36 @@
+﻿@model List<SSMVC5WebApp.Infrastructure.Entities.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Products</h2>
+
+<table class="table table-bordered table-condensed table-responsive table-striped">
+    <tr>
+        <th>ProductID</th>
+        <th>ProductName</th>
+        <th class="NumericCol">Price</th>
+        <th>Category</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="tdclass">@item.ProductId</td>
+            <td class="tdclass">@Html.ActionLink(@item.ProductName, "Edit", new { item.ProductId })</td>
+            <td class="tdclass NumericCol">@item.Price.ToString("C")</td>
+            <td class="tdclass">@Html.ActionLink(@item.Category, "GetByCategory", new { item.Category })</td>
+            <td class="tdclass">
+                @using (Html.BeginForm("Delete", "Product"))
+                {
+                    @Html.Hidden("ProductID", item.ProductId)
+                    <input type="submit" value="Delete" class="btn btn-danger btn-group-sm" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Add New Product", "Create")
+</p>

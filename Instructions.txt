@@ -1,0 +1,13 @@
+NuGet Packages
+	1. Install-Package EntityFramework
+	2. Install-Package Unity
+	3. Install-Package WindowsAzure.Storage
+	4. Install-package Microsoft.WindowsAzure.ConfigurationManager
+
+EntityFramework Code First Syntax
+	a. Enable Migrations for creating the configuration file
+		1. Enable-Migrations -ContextTypeName SSMVC5WebApp.Infrastructure.Concrete.SportsStoreDbContext -MigrationsDirectory DataContexts\SportsStoreMigrations
+	b. Add-Migration for creating the database and table structure into the class "InitialCreate"
+		1. Add-Migration -ConfigurationTypeName SSMVC5WebApp.DataContexts.SportsStoreMigrations.Configuration "InitialCreate"
+	c. Update-Database for creating the database if not existing and add data through the seed method
+		1. Update-Database -ConfigurationTypeName SSMVC5WebApp.DataContexts.SportsStoreMigrations.Configuration

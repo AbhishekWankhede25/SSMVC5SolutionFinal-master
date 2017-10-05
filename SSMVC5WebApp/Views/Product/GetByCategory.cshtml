@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SSMVC5WebApp.Infrastructure.Entities.Product>
+
+@{
+    ViewBag.Title = "GetByCategory";
+}
+
+<h2>Products By Categogry: @ViewBag.category</h2>
+
+<table class="table table-bordered table-condensed table-responsive table-striped">
+    <tr>
+        <th>ProductID</th>
+        <th>ProductName</th>
+        <th>Discription</th>
+        <th class="NumericCol">Price</th>
+        <th>Photo</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductId</td>
+            <td>@item.ProductName</td>
+            <td>@item.Description</td>
+            <td class="NumericCol">@item.Price.ToString("C")</td>
+            <td><img src=@item.PhotoUrl height="130" width="130" /></td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("All Product", "Index")
+</p>
